@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("unused")
@@ -27,7 +30,8 @@ public class Cep implements Serializable{
 	@Column(name = "BAIRRO")
 	private String bairro;
 
-	@Column(name = "CIDADE")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "IBGE", nullable = false)
 	private Cidade cidade;
 
 }
