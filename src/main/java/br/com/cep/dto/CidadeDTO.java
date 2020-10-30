@@ -18,8 +18,6 @@ public class CidadeDTO implements Serializable{
 	private String uf;
 	  
 	private String localidade;
-	  
-	private List<CepDTO> ceps;
 
 	public String getIbge() {
 		return ibge;
@@ -44,13 +42,5 @@ public class CidadeDTO implements Serializable{
 	public void setLocalidade(String localidade) {
 		this.localidade = localidade;
 	}
-
-	public List<CepDTO> getCeps() {
-		return ceps;
-	}
-
-	public void setCeps(List<CepDTO> ceps) {
-		this.ceps = ceps;
-	} 
 	
 }
