@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CepController {
 
-	@GetMapping("/helloworld")
+	@GetMapping("/cep")
 	public String findCep() {
-		return "Olá mundo!";
+		return "Olá mundo para Silvia!";
 	}
 
 }
