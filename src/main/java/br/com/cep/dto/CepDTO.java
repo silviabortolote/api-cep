@@ -16,6 +16,6 @@ public class CepDTO implements Serializable{
 
 	private String bairro;
 
-	private Cidade cidade;
+	private CidadeDTO cidade;
 
 }

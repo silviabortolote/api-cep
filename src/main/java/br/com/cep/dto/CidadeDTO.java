@@ -15,6 +15,6 @@ public class CidadeDTO implements Serializable{
 	  
 	private String localidade;
 	  
-	private List<Cep> ceps; 
+	private List<CepDTO> ceps; 
 	
 }
