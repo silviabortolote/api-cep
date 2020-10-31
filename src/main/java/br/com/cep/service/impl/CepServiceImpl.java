@@ -39,7 +39,7 @@ public class CepServiceImpl implements CepService{
 	public CepDTO getCep(String cep) {
 		
 		final Cep cepBanco = cepRepository.findByCep(cep);
-		
+		log.info("cepBanco {} ", cepBanco.getCep());
         if (cepBanco == null) {   
         	final ViaCepDTO viaCep = httpService.buscarCep(cep);
         	viaCep.setCep(cep);

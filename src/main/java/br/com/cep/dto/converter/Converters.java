@@ -1,6 +1,7 @@
 package br.com.cep.dto.converter;
 
 import br.com.cep.dto.CepDTO;
+import br.com.cep.dto.CepsDTO;
 import br.com.cep.dto.CidadeDTO;
 import br.com.cep.model.Cep;
 import br.com.cep.model.Cidade;
@@ -28,6 +29,18 @@ public final class Converters{
 				.uf(input.getCidade().getUf())
 				.localidade(input.getCidade().getLocalidade())
 				.build())
+		.build();
+	}
+	
+	public static CepsDTO convertCeps(Cep input) {
+		if (input == null || input.getCep() == null) {
+			return null;
+		}
+		return CepsDTO.builder()
+		.cep(mascararCep(input.getCep()))
+		.logradouro(input.getLogradouro())
+		.complemento(input.getComplemento())
+		.bairro(input.getBairro())
 		.build();
 	}
 	

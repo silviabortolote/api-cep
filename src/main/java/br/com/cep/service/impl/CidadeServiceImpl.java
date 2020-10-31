@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cep.dto.CepDTO;
+import br.com.cep.dto.CepsDTO;
 import br.com.cep.dto.converter.Converters;
 import br.com.cep.model.Cep;
 import br.com.cep.model.Cidade;
@@ -26,7 +27,7 @@ public class CidadeServiceImpl implements CidadeService{
     }
 
 	@Override
-	public List<CepDTO> getCeps(String ibge, String uf) {
+	public List<CepsDTO> getCeps(String ibge, String uf) {
 		
 		Cidade cidade;
 		
@@ -38,11 +39,11 @@ public class CidadeServiceImpl implements CidadeService{
 		
 		if(cidade != null) {
 			
-			List<CepDTO> list = new ArrayList<CepDTO>(); 
+			List<CepsDTO> list = new ArrayList<CepsDTO>(); 
 						
 			for ( Cep cep : cidade.getCeps()) {
 				log.info("Cep {} ", cep.getCep());
-				list.add(Converters.convertCep(cep));				
+				list.add(Converters.convertCeps(cep));				
 			}
 			
 			return list;

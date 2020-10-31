@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cep.dto.CepDTO;
+import br.com.cep.dto.CepsDTO;
 import br.com.cep.service.CepService;
 import br.com.cep.service.CidadeService;
 import lombok.extern.log4j.Log4j2;
@@ -29,12 +30,13 @@ public class CepController {
     }
 
 	@GetMapping("/cep/{cep}")
-	public CepDTO findCep(@PathVariable String cep) {		
+	public CepDTO findCep(@PathVariable String cep) {	
+		log.info("cep {} ", cep);
 		return cepService.getCep(cep);		
 	}
 	
 	@GetMapping("/ceps")
-	public List<CepDTO> findCep(@Valid String ibge, @Valid String uf) {		
+	public List<CepsDTO> findCep(@Valid String ibge, @Valid String uf) {		
 		return cidadeService.getCeps(ibge, uf);		
 		
 	}
