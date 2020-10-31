@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @SuppressWarnings("unused")
 @Entity
 @Table(name = "TCep")
@@ -30,6 +32,7 @@ public class Cep implements Serializable{
 	@Column(name = "BAIRRO")
 	private String bairro;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IBGE", nullable = false)
 	private Cidade cidade;
