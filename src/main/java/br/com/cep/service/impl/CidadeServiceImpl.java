@@ -29,11 +29,17 @@ public class CidadeServiceImpl implements CidadeService{
 	@Override
 	public List<Cep> getCeps(String ibge, String uf) {
 		
-		Cidade cid = cidadeRepository.findByIbge(ibge); 	
+		Cidade cidade;
 		
-		/*if(cid!=null) {
-			//List<Cep> ceps = cepRepository.findByIbge(cid.getIbge());
-		}	*/
+		if(uf!=null) {
+			cidade = cidadeRepository.findByIbgeUf(ibge, uf);
+		}else {
+			cidade = cidadeRepository.findByIbge(ibge);
+		}
+		
+		if(cidade != null) {
+			//List<Cep> cps = cepRepository.findByIbge(ibge);
+		}
 		
 		return null;
 	}

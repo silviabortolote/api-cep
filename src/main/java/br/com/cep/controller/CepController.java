@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cep.dto.CepDTO;
+import br.com.cep.model.Cep;
 import br.com.cep.service.CepService;
 import br.com.cep.service.CidadeService;
 import lombok.extern.log4j.Log4j2;
@@ -35,9 +36,11 @@ public class CepController {
 	}
 	
 	@GetMapping("/ceps")
-	public List<CepDTO> findCep(@Valid String ibge, @Valid String uf) {
+	public List<Cep> findCep(@Valid String ibge, @Valid String uf) {
 		log.info("Request ibge: {}",ibge);
 		log.info("Request uf: {}",uf);
+		
+		cidadeService.getCeps(ibge, uf);
 		
 		return null;
 	}
