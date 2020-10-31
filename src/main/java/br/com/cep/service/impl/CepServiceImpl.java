@@ -44,9 +44,13 @@ public class CepServiceImpl implements CepService{
            return Converters.convertCep(cepBanco);        		
         }else {
         	log.info("Request via cep: {}",cep);
+   
         	final ViaCepDTO viaCep = httpService.buscarCep(cep);
+        	viaCep.setCep(cep);
         	criarCep(viaCep);
         	log.info("Resposta via cep: {}", viaCep.getComplemento());
+        	log.info("Resposta via cep: {}", viaCep.getBairro());
+        	log.info("Resposta via cep: {}", viaCep.getIbge());
         }
 
         return null;
@@ -54,34 +58,31 @@ public class CepServiceImpl implements CepService{
 	
 	private CepDTO criarCep(ViaCepDTO viaCep) {
         final Cep cep = new Cep();
+        log.info("Criando o cep {}", viaCep.getCep());
         cep.setCep(viaCep.getCep());
         cep.setLogradouro(viaCep.getLogradouro());
         cep.setComplemento(viaCep.getComplemento());
         cep.setBairro(viaCep.getBairro());
-        //Cidade
-        //cepRepository.save(cep);
-        log.info("Criado o cep ",cep.getCep());
+        cep.setCidade(criarCidade(viaCep));
+        cepRepository.save(cep);
         return Converters.convertCep(cep);
     }
     
-    private CidadeDTO criarCidade(ViaCepDTO viaCep) {
-    	log.info("Buscando pela cidade de ibge ->>>> ", viaCep.getIbge());
+    private Cidade criarCidade(ViaCepDTO viaCep) {
+    	log.info("Buscando pela cidade de ibge ->>>> {}", viaCep.getIbge());
         final Cidade opt  = cidadeRepository.findByIbge(viaCep.getIbge());
-        if(opt!=null) {
-        	log.info("Buscando a cidade ", opt.getIbge());
+        if(opt!=null && opt.getIbge()!=null) {
+        	log.info("Buscando a cidade {} ", opt.getIbge());
         }else {
-        	log.info("Cidade não encontrada!!! ");
+        	Cidade nova = new Cidade();
+        	nova.setIbge(viaCep.getIbge());
+        	nova.setUf(viaCep.getUf());
+        	nova.setLocalidade(viaCep.getLocalidade());
+            cidadeRepository.save(nova);
+            return nova;
         }
         
-        /*if (cidade!=null) {
-        	cidade = new Cidade();
-        	cidade.setIbge(viaCep.getIbge());
-        	cidade.setUf(viaCep.getUf());
-        	cidade.setLocalidade(viaCep.getLocalidade());
-            cidadeRepository.save(cidade);
-        }*/
-        //return Converters.convertCidade(cidade);
-        return null;
+        return opt;
         
     }
 

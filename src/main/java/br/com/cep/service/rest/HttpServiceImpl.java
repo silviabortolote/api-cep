@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.ImmutableMap;
 
 import br.com.cep.dto.ViaCepDTO;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Service
 public class HttpServiceImpl implements HttpService  {
 	
@@ -29,6 +31,9 @@ public class HttpServiceImpl implements HttpService  {
         
         final Map<String, String> queryParams = ImmutableMap.<String, String>builder()
                 .put("cid", "9999").build();
+        
+        log.info("buscarCep: {}",cep);
+        
         return provider.get("http://viacep.com.br/ws/"+cep+"/json/", queryParams, headers, ViaCepDTO.class); 
 	}
 
