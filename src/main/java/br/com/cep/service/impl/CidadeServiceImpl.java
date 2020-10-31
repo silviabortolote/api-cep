@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import br.com.cep.model.Cep;
 import br.com.cep.model.Cidade;
 import br.com.cep.service.CidadeService;
-import br.com.cep.service.repository.CepRepository;
 import br.com.cep.service.repository.CidadeRepository;
 import lombok.extern.log4j.Log4j2;
 
@@ -18,12 +17,9 @@ public class CidadeServiceImpl implements CidadeService{
 	
 	private final CidadeRepository cidadeRepository;
 	
-	private final CepRepository cepRepository;
-	
 	@Autowired
-    public CidadeServiceImpl( CidadeRepository cidadeRepository, CepRepository cepRepository) {
+    public CidadeServiceImpl( CidadeRepository cidadeRepository) {
         this.cidadeRepository = cidadeRepository;
-        this.cepRepository = cepRepository;
     }
 
 	@Override

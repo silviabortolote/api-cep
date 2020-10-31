@@ -22,7 +22,6 @@ public class CepController {
 
 	@GetMapping("/cep/{cep}")
 	public CepDTO findCep(@PathVariable String cep) {
-		log.info("Request cep: {}",cep);
 		return cepService.getCep(cep);
 	}
 

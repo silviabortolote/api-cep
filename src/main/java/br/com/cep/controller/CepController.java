@@ -30,18 +30,13 @@ public class CepController {
     }
 
 	@GetMapping("/cep/{cep}")
-	public CepDTO findCep(@PathVariable String cep) {
-		log.info("Request cep: {}",cep);
-		return cepService.getCep(cep);
+	public CepDTO findCep(@PathVariable String cep) {		
+		return cepService.getCep(cep);		
 	}
 	
 	@GetMapping("/ceps")
-	public List<Cep> findCep(@Valid String ibge, @Valid String uf) {
-		log.info("Request ibge: {}",ibge);
-		log.info("Request uf: {}",uf);
-		
-		return cidadeService.getCeps(ibge, uf);
-		
+	public List<Cep> findCep(@Valid String ibge, @Valid String uf) {		
+		return cidadeService.getCeps(ibge, uf);		
 		
 	}
 

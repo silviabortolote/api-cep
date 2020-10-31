@@ -40,9 +40,7 @@ public class CepServiceImpl implements CepService{
 		
 		final Cep cepBanco = cepRepository.findByCep(cep);
 		
-        if (cepBanco == null) {
-        	log.info("Request via cep: {}",cep);
-   
+        if (cepBanco == null) {   
         	final ViaCepDTO viaCep = httpService.buscarCep(cep);
         	viaCep.setCep(cep);
         	CepDTO novo = criarCep(viaCep);
@@ -64,7 +62,6 @@ public class CepServiceImpl implements CepService{
     }
     
     private Cidade criarCidade(ViaCepDTO viaCep) {
-    	log.info("Buscando pela cidade de ibge ->>>> {}", viaCep.getIbge());
         final Cidade opt  = cidadeRepository.findByIbge(viaCep.getIbge());
         if(opt!=null && opt.getIbge()!=null) {
         	log.info("Buscando a cidade {} ", opt.getIbge());

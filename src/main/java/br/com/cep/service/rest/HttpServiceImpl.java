@@ -32,8 +32,6 @@ public class HttpServiceImpl implements HttpService  {
         final Map<String, String> queryParams = ImmutableMap.<String, String>builder()
                 .put("cid", "9999").build();
         
-        log.info("buscarCep: {}",cep);
-        
         return provider.get("http://viacep.com.br/ws/"+cep+"/json/", queryParams, headers, ViaCepDTO.class); 
 	}
 
