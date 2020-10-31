@@ -40,20 +40,16 @@ public class CepServiceImpl implements CepService{
 		
 		final Cep cepBanco = cepRepository.findByCep(cep);
 		
-        if (cepBanco != null) {
-           return Converters.convertCep(cepBanco);        		
-        }else {
+        if (cepBanco == null) {
         	log.info("Request via cep: {}",cep);
    
         	final ViaCepDTO viaCep = httpService.buscarCep(cep);
         	viaCep.setCep(cep);
-        	criarCep(viaCep);
-        	log.info("Resposta via cep: {}", viaCep.getComplemento());
-        	log.info("Resposta via cep: {}", viaCep.getBairro());
-        	log.info("Resposta via cep: {}", viaCep.getIbge());
+        	CepDTO novo = criarCep(viaCep);
+        	return novo;
         }
 
-        return null;
+        return Converters.convertCep(cepBanco);
 	}
 	
 	private CepDTO criarCep(ViaCepDTO viaCep) {
