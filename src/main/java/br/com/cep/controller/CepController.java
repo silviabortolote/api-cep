@@ -1,5 +1,9 @@
 package br.com.cep.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +28,13 @@ public class CepController {
 	public CepDTO findCep(@PathVariable String cep) {
 		log.info("Request cep: {}",cep);
 		return cepService.getCep(cep);
+	}
+	
+	@GetMapping("/ceps")
+	public List<CepDTO> findCep(@Valid String ibge, @Valid String uf) {
+		log.info("Request ibge: {}",ibge);
+		log.info("Request uf: {}",uf);
+		return null;
 	}
 
 }
