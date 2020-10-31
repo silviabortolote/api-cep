@@ -2,11 +2,10 @@ package br.com.cep.service;
 
 import java.util.List;
 
-import br.com.cep.model.Cep;
-
+import br.com.cep.dto.CepDTO;
 
 public interface CidadeService {
 	
-	public List<Cep> getCeps(String ibge, String uf);
+	public List<CepDTO> getCeps(String ibge, String uf);
 
 }
