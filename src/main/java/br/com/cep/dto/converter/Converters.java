@@ -9,13 +9,17 @@ public final class Converters{
 	
 	private Converters() {
 	}
+	
+	public static String mascararCep(String cep) {
+		return new StringBuilder().append(cep.substring(0, 5)).append("-").append(cep.substring(5,8)).toString(); 
+	}
 
 	public static CepDTO convertCep(Cep input) {
 		if (input == null || input.getCep() == null) {
 			return null;
 		}
 		return CepDTO.builder()
-		.cep(input.getCep())
+		.cep(mascararCep(input.getCep()))
 		.logradouro(input.getLogradouro())
 		.complemento(input.getComplemento())
 		.bairro(input.getBairro())

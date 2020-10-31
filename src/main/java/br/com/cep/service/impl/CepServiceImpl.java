@@ -54,7 +54,6 @@ public class CepServiceImpl implements CepService{
 	
 	private CepDTO criarCep(ViaCepDTO viaCep) {
         final Cep cep = new Cep();
-        log.info("Criando o cep {}", viaCep.getCep());
         cep.setCep(viaCep.getCep());
         cep.setLogradouro(viaCep.getLogradouro());
         cep.setComplemento(viaCep.getComplemento());
