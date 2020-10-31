@@ -40,9 +40,9 @@ public class CepController {
 		log.info("Request ibge: {}",ibge);
 		log.info("Request uf: {}",uf);
 		
-		cidadeService.getCeps(ibge, uf);
+		return cidadeService.getCeps(ibge, uf);
 		
-		return null;
+		
 	}
 
 }

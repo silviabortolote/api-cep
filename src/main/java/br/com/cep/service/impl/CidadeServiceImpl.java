@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.cep.dto.CidadeDTO;
-import br.com.cep.dto.converter.Converters;
 import br.com.cep.model.Cep;
 import br.com.cep.model.Cidade;
 import br.com.cep.service.CidadeService;
@@ -39,10 +37,7 @@ public class CidadeServiceImpl implements CidadeService{
 			cidade = cidadeRepository.findByIbge(ibge);
 		}
 		
-		if(cidade != null) {
-			
-			CidadeDTO cidadeDTO =  Converters.convertCidade(cidade);
-			
+		if(cidade != null) {			
 			return cidade.getCeps();
 		}
 		
