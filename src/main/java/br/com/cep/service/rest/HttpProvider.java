@@ -25,7 +25,6 @@ public class HttpProvider {
 	
 	public <R> R get(String baseUrl, Map<String, String> queryParams, Map<String, String> headers, Class<R> type) {
         try{
-            //final String fullPath = baseUrl + RestApiUtils.createQueryParams(queryParams);
         	final String fullPath = baseUrl ;
             return WebClient.create(fullPath).get().headers(h -> h.setAll(headers)).retrieve().bodyToMono(type).block();
         } catch (WebClientResponseException e) {
@@ -33,7 +32,7 @@ public class HttpProvider {
             try {
                 return objectMapper.readValue(e.getResponseBodyAsByteArray(), type);
             } catch (IOException ex) {
-                log.error("Errp ao acessar api", ex);
+                log.error("Erro ao acessar api", ex);
                 throw new RuntimeException(baseUrl, e);
             }
         }
